@@ -1,0 +1,22 @@
+# Core framework
+fastapi==0.115.0
+uvicorn==0.30.6
+
+# Lightweight vision & hashing
+pillow==10.2.0
+imagehash==4.3.1
+opencv-python-headless==4.8.1.78
+numpy==1.24.4  # ✅ Works on Python 3.8
+
+# Async, network, utils
+aiohttp==3.9.3
+requests==2.32.3
+python-dotenv==1.0.1
+
+# Platform integrations
+telethon==1.34.0
+google-api-python-client==2.147.0
+
+# Optional: for reports / templating
+reportlab==4.0.9
+jinja2==3.1.4
