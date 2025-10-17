@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scan Results</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Scan Results</h1>
+
+    {% if results %}
+      <table class="results">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Source</th>
+            <th>Type</th>
+            <th>Title/Channel</th>
+            <th>Link</th>
+            <th>Similarity</th>
+            <th>Report</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in results %}
+          <tr class="{{ 'logo' if r.type == 'Logo Match' else 'keyword' }}">
+            <td>{{ loop.index }}</td>
+            <td>{{ r.source }}</td>
+            <td>{{ r.type }}</td>
+            <td>{{ r.title or r.channel }}</td>
+            <td><a href="{{ r.link }}" target="_blank">Open</a></td>
+            <td>{{ "%.2f"|format(r.similarity * 100) }}%</td>
+            <td>
+              <form class="reportForm">
+                <input type="hidden" name="source" value="{{ r.source }}">
+                <input type="hidden" name="title" value="{{ r.title or r.channel }}">
+                <input type="hidden" name="link" value="{{ r.link }}">
+                <input type="hidden" name="similarity" value="{{ r.similarity }}">
+                <button type="submit">Report</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No matches found.</p>
+    {% endif %}
+
+    <div class="logs">
+      <div class="logs-header">
+        <h3>Logs</h3>
+        <button id="toggleLogs">Pause</button>
+      </div>
+      <pre id="logsBox">(logs will appear here)</pre>
+    </div>
+  </div>
+</body>
+</html>

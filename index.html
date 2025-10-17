@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Piracy Scanner</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Piracy Scanner</h1>
+    <p>Upload your company logo to detect unauthorized usage on Telegram and Google.</p>
+
+    <form id="uploadForm" action="/upload_logo" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/*" required>
+      <button type="submit">Start Scan</button>
+    </form>
+
+    <div class="logs">
+      <div class="logs-header">
+        <h3>Live Logs</h3>
+        <button id="toggleLogs">Pause</button>
+      </div>
+      <pre id="logsBox">(logs will appear here)</pre>
+    </div>
+  </div>
+
+  <div id="loadingOverlay">
+    <div class="loader"></div>
+    <p>Scanning… this can take a minute or two (videos = slower).</p>
+  </div>
+</body>
+</html>
